@@ -19,3 +19,12 @@ Keep the styling minimal and inline, this is for a fundamentals assignment, not 
 - Refactored `app/layout.tsx` with a centered max-width layout container, uncluttered header navbar, and subtle borders.
 - Styled `app/page.tsx`, `app/items/page.tsx`, and `app/items/[id]/page.tsx` with consistent typography, neutral card containers, and clean spacing.
 **Correction (if any):** None
+
+## [2026-07-22] - Controlled Item Creation Form with Validation
+**Prompt:** In the frontend, on the /items page, add a form to create a new item with two fields: "name" (text) and "description" (text). Make both inputs controlled with React state. Add client-side validation: 1. Name is required and must be at least 3 characters 2. Description is required. Show a clear inline error message under any field that fails validation when the form is submitted, and prevent submission until both fields are valid. On successful submission, add the new item to the existing mock items list and clear the form. Style the form to match the existing minimal, clean styling already used elsewhere in the app...
+**Result:** Implemented a controlled form with client-side validation on `/items` route (`app/items/page.tsx`):
+- Added controlled state for `name`, `description`, and `errors`.
+- Added validation requiring name (min 3 chars) and description.
+- Displayed subtle inline error messages under invalid inputs.
+- Appended new items to local state list and cleared the form on successful submit.
+**Correction (if any):** None
