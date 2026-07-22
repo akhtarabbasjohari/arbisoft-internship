@@ -88,7 +88,10 @@ export default function ItemsPage() {
 
         {/* Name Field */}
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          <label htmlFor="item-name" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}>
+          <label
+            htmlFor="item-name"
+            style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}
+          >
             Name
           </label>
           <input
@@ -119,7 +122,10 @@ export default function ItemsPage() {
 
         {/* Description Field */}
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          <label htmlFor="item-description" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}>
+          <label
+            htmlFor="item-description"
+            style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}
+          >
             Description
           </label>
           <textarea
