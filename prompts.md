@@ -28,3 +28,13 @@ Keep the styling minimal and inline, this is for a fundamentals assignment, not 
 - Displayed subtle inline error messages under invalid inputs.
 - Appended new items to local state list and cleared the form on successful submit.
 **Correction (if any):** None
+
+## [2026-07-23] - Jest & React Testing Library Setup & Unit Tests
+**Prompt:** Set up Jest and React Testing Library in this Next.js frontend project if not already configured. Then write at least 3 unit tests for the Items list component (app/items/page.tsx). Include these test cases: 1. The component renders without crashing 2. The component displays the expected number of mock items 3. Each item links to the correct detail page URL using its id. Run the tests and confirm they all pass. List every file you created or modified, and tell me if any test initially failed and what fixed it.
+**Result:** Configured Jest and React Testing Library in the frontend Next.js project and created unit test suite:
+- Installed `jest`, `jest-environment-jsdom`, `@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event`, and `@types/jest`.
+- Configured `jest.config.ts` (using `next/jest`) and `jest.setup.ts`.
+- Added `"test": "jest"` script to `package.json`.
+- Created test suite `__tests__/items.test.tsx` testing rendering, item counts, and detail page URL links.
+- All 3 tests passed successfully.
+**Correction (if any):** None
