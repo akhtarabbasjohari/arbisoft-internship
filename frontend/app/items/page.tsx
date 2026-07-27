@@ -30,10 +30,19 @@ export default function ItemsPage() {
     const trimmedName = name.trim();
     const trimmedDescription = description.trim();
 
+    // 1. Basic Field Validation
     if (!trimmedName) {
-      newErrors.name = "Name is required.";
+      newErrors.name = "Name cannot be empty or just whitespace.";
     } else if (trimmedName.length < 3) {
       newErrors.name = "Name must be at least 3 characters.";
+    } else {
+      // 2. Duplication Check (Case-Insensitive)
+      const isDuplicate = items.some(
+        (item) => item.name.trim().toLowerCase() === trimmedName.toLowerCase()
+      );
+      if (isDuplicate) {
+        newErrors.name = "An item with this name already exists.";
+      }
     }
 
     if (!trimmedDescription) {
@@ -45,17 +54,26 @@ export default function ItemsPage() {
       return;
     }
 
-    // Clear validation errors and append new item
-    setErrors({});
+    // 4. Auto-generate next unique ID based on highest existing ID in current items list
+    const maxExistingId = items.reduce((max, item) => Math.max(max, parseInt(item.id, 10) || 0), 0);
+    const newId = String(maxExistingId + 1);
+
     const newItem: Item = {
-      id: String(items.length + 1),
+      id: newId,
       name: trimmedName,
       description: trimmedDescription,
     };
 
+    // Add item and reset form state
+    setErrors({});
     setItems((prevItems) => [...prevItems, newItem]);
     setName("");
     setDescription("");
+  };
+
+  // 3. Delete functionality (removes target item without shifting/reassigning existing IDs)
+  const handleDelete = (idToDelete: string) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== idToDelete));
   };
 
   return (
@@ -181,43 +199,88 @@ export default function ItemsPage() {
         <h2 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#111827", margin: "0 0 4px 0" }}>
           Existing Items ({items.length})
         </h2>
-        {items.map((item) => (
-          <Link
-            key={item.id}
-            href={`/items/${item.id}`}
+        {items.length === 0 ? (
+          <div
             style={{
-              display: "block",
+              padding: "20px",
               backgroundColor: "#ffffff",
-              border: "1px solid #e5e7eb",
+              border: "1px dashed #d1d5db",
               borderRadius: "6px",
-              padding: "16px",
-              textDecoration: "none",
-              transition: "border-color 0.15s ease",
+              textAlign: "center",
+              color: "#6b7280",
+              fontSize: "0.9rem",
             }}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span style={{ fontWeight: 600, color: "#111827", fontSize: "0.95rem" }}>
-                {item.name}
-              </span>
-              <span
+            No items in directory. Add a new item above.
+          </div>
+        ) : (
+          items.map((item) => (
+            <div
+              key={item.id}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                backgroundColor: "#ffffff",
+                border: "1px solid #e5e7eb",
+                borderRadius: "6px",
+                padding: "16px",
+                gap: "12px",
+              }}
+            >
+              <Link
+                href={`/items/${item.id}`}
                 style={{
-                  fontSize: "0.75rem",
-                  fontFamily: "monospace",
-                  color: "#6b7280",
-                  backgroundColor: "#f3f4f6",
-                  padding: "2px 8px",
-                  borderRadius: "4px",
-                  border: "1px solid #e5e7eb",
+                  flex: 1,
+                  textDecoration: "none",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "4px",
                 }}
               >
-                ID: {item.id}
-              </span>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span style={{ fontWeight: 600, color: "#111827", fontSize: "0.95rem" }}>
+                    {item.name}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "0.75rem",
+                      fontFamily: "monospace",
+                      color: "#6b7280",
+                      backgroundColor: "#f3f4f6",
+                      padding: "2px 8px",
+                      borderRadius: "4px",
+                      border: "1px solid #e5e7eb",
+                    }}
+                  >
+                    ID: {item.id}
+                  </span>
+                </div>
+                <p style={{ color: "#6b7280", fontSize: "0.85rem", margin: 0 }}>
+                  {item.description}
+                </p>
+              </Link>
+              <button
+                type="button"
+                onClick={() => handleDelete(item.id)}
+                aria-label={`Delete ${item.name}`}
+                style={{
+                  backgroundColor: "#ffffff",
+                  color: "#9ca3af",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "5px",
+                  padding: "6px 12px",
+                  fontSize: "0.8rem",
+                  fontWeight: 500,
+                  cursor: "pointer",
+                  transition: "all 0.15s ease",
+                }}
+              >
+                Delete
+              </button>
             </div>
-            <p style={{ color: "#6b7280", fontSize: "0.85rem", margin: "6px 0 0 0" }}>
-              {item.description}
-            </p>
-          </Link>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
