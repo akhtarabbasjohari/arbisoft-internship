@@ -28,7 +28,17 @@ export default async function ItemDetailPage({ params }: Props) {
           Item #{id} Detail
         </h1>
         <p style={{ color: "#6b7280", fontSize: "0.9rem", margin: 0 }}>
-          Viewing dynamic route at <code style={{ backgroundColor: "#f3f4f6", padding: "2px 6px", borderRadius: "4px", fontSize: "0.85rem" }}>/items/{id}</code>
+          Viewing dynamic route at{" "}
+          <code
+            style={{
+              backgroundColor: "#f3f4f6",
+              padding: "2px 6px",
+              borderRadius: "4px",
+              fontSize: "0.85rem",
+            }}
+          >
+            /items/{id}
+          </code>
         </p>
       </div>
 
@@ -47,7 +57,14 @@ export default async function ItemDetailPage({ params }: Props) {
           <span style={{ width: "120px", fontSize: "0.85rem", color: "#6b7280", fontWeight: 500 }}>
             Item ID:
           </span>
-          <span style={{ fontSize: "0.85rem", color: "#111827", fontFamily: "monospace", fontWeight: 600 }}>
+          <span
+            style={{
+              fontSize: "0.85rem",
+              color: "#111827",
+              fontFamily: "monospace",
+              fontWeight: 600,
+            }}
+          >
             {id}
           </span>
         </div>

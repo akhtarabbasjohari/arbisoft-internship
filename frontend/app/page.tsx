@@ -24,8 +24,11 @@ export default function Home() {
         <h2 style={{ fontSize: "1.05rem", fontWeight: 600, color: "#111827", margin: "0 0 8px 0" }}>
           Overview
         </h2>
-        <p style={{ color: "#4b5563", fontSize: "0.9rem", margin: "0 0 16px 0", lineHeight: "1.6" }}>
-          This application features shared layouts, nested routes, and dynamic URL parameter handling with zero bloated UI frameworks.
+        <p
+          style={{ color: "#4b5563", fontSize: "0.9rem", margin: "0 0 16px 0", lineHeight: "1.6" }}
+        >
+          This application features shared layouts, nested routes, and dynamic URL parameter
+          handling with zero bloated UI frameworks.
         </p>
         <Link
           href="/items"

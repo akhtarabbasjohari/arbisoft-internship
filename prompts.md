@@ -28,3 +28,13 @@ Keep the styling minimal and inline, this is for a fundamentals assignment, not 
 - Displayed subtle inline error messages under invalid inputs.
 - Appended new items to local state list and cleared the form on successful submit.
 **Correction (if any):** None
+
+## [2026-07-22] - Setup ESLint & Prettier Integration
+**Prompt:** Set up ESLint and Prettier in the frontend Next.js project. Configure them to work together without conflicting rules. Use sensible, commonly recommended defaults for a TypeScript + Next.js project. Then run the linter across the whole project and fix every warning and error until there is a clean lint pass. List every file you created, modified, or fixed, and summarize what kinds of issues were found and corrected.
+**Result:** Installed and configured Prettier with ESLint 9 Flat Config:
+- Installed `prettier` and `eslint-config-prettier`.
+- Configured `eslint.config.mjs` with `eslintConfigPrettier` to turn off conflicting ESLint formatting rules.
+- Created `.prettierrc` (sensible defaults) and `.prettierignore`.
+- Updated `package.json` with `format` and `format:check` scripts.
+- Ran ESLint (passed cleanly with 0 errors/warnings) and Prettier across all codebase files.
+**Correction (if any):** None
