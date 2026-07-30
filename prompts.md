@@ -45,3 +45,24 @@ Keep the styling minimal and inline, this is for a fundamentals assignment, not 
 - Covered rendering initial items, valid addition, empty/whitespace validation, case-insensitive duplicate checking, highest-ID resolution vs list length, item deletion, ID collision safety after highest ID deletion, middle item deletion ID preservation, and form/error resetting.
 - All 9 unit tests passed cleanly (`PASS`).
 **Correction (if any):** None
+
+## [2026-07-30] - Django REST Framework Notes CRUD API Setup
+**Prompt:** Set up a new Django project with Django REST Framework in the backend folder. Create one app inside the project called "notes". Build a full CRUD REST API for a Notes resource with the following:
+1. A Note model with fields: title (text), content (text), created_at (auto timestamp)
+2. Add a ForeignKey relationship from Note to Django's built in User model, so each note belongs to one user
+3. A DRF serializer for the Note model
+4. A ViewSet or set of API views providing all 4 CRUD operations: create, list, retrieve one, update, delete
+5. URL routing connecting these views to /api/notes/ and /api/notes/<id>/
+6. Run the initial migrations so the database tables are created
+
+Use SQLite for the database, keep this simple, no need for a production database yet. After setup, tell me exactly which files you created and what each one does.
+**Result:** Initialized Django project `config` in `backend/` and created `notes` app with DRF CRUD API:
+- Installed `django` and `djangorestframework` in `backend/venv`.
+- Created Django project configuration in `backend/config/` and updated `INSTALLED_APPS` and URL routing (`/api/notes/`, `/api/notes/<id>/`).
+- Defined `Note` model in `notes/models.py` with `title`, `content`, `created_at`, and `user` ForeignKey.
+- Defined `NoteSerializer` in `notes/serializers.py`.
+- Built `NoteViewSet` in `notes/views.py` using `ModelViewSet` for full CRUD operations.
+- Set up router in `notes/urls.py` attached to `config/urls.py`.
+- Executed `makemigrations` and `migrate` to initialize SQLite database tables.
+**Correction (if any):** None
+
