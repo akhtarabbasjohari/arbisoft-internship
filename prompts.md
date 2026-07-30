@@ -38,3 +38,10 @@ Keep the styling minimal and inline, this is for a fundamentals assignment, not 
 - Updated `package.json` with `format` and `format:check` scripts.
 - Ran ESLint (passed cleanly with 0 errors/warnings) and Prettier across all codebase files.
 **Correction (if any):** None
+
+## [2026-07-27] - Granular Unit Tests for Items Page
+**Prompt:** Add granular unit tests for the Items page in this Next.js frontend project, expanding on the existing test suite. Cover the following specific cases, each as its own separate test: 1. Renders the correct initial number of mock items on page load 2. Successfully adds a new item when the form is submitted with valid, unique data 3. Blocks submission and shows an inline error when the name field is empty or whitespace only 4. Blocks submission and shows an inline error when a duplicate name (case-insensitive) is submitted 5. Automatically assigns the correct next id based on the highest existing id, not the list length 6. Successfully deletes an item when its delete button is clicked 7. After deleting the item with the highest id, confirms a newly added item still receives a unique, non-colliding id 8. After deleting an item from the middle of the list, confirms the remaining items keep their original ids unchanged 9. Confirms the form resets and clears any error messages after a successful submission. Write each as an individual, clearly named test case rather than combining multiple checks into one test. Run all tests and confirm they pass. List every file created or modified, and tell me the final total number of passing tests.
+**Result:** Expanded test suite into 9 individual, granular unit tests in `__tests__/items.test.tsx`:
+- Covered rendering initial items, valid addition, empty/whitespace validation, case-insensitive duplicate checking, highest-ID resolution vs list length, item deletion, ID collision safety after highest ID deletion, middle item deletion ID preservation, and form/error resetting.
+- All 9 unit tests passed cleanly (`PASS`).
+**Correction (if any):** None
