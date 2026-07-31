@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from .models import Note
 
 
@@ -13,7 +14,8 @@ class NoteSerializer(serializers.ModelSerializer):
     def validate_title(self, value):
         stripped = value.strip()
         if not stripped:
-            raise serializers.ValidationError("Title cannot be empty or whitespace only.")
+            msg = "Title cannot be empty or whitespace only."
+            raise serializers.ValidationError(msg)
         if len(stripped) < 3:
             raise serializers.ValidationError("Title must be at least 3 characters.")
         return stripped
@@ -21,8 +23,8 @@ class NoteSerializer(serializers.ModelSerializer):
     def validate_content(self, value):
         stripped = value.strip()
         if not stripped:
-            raise serializers.ValidationError("Content cannot be empty or whitespace only.")
+            msg = "Content cannot be empty or whitespace only."
+            raise serializers.ValidationError(msg)
         if len(stripped) < 5:
             raise serializers.ValidationError("Content must be at least 5 characters.")
         return stripped
-
