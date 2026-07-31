@@ -66,3 +66,24 @@ Use SQLite for the database, keep this simple, no need for a production database
 - Executed `makemigrations` and `migrate` to initialize SQLite database tables.
 **Correction (if any):** None
 
+## [2026-07-31] - Serializer Validation & HTTP Status Code Enforcement
+**Prompt:** Add explicit input validation to the Note serializer in this Django REST Framework project. Add the following validation rules:
+1. The title field is required and cannot be empty or just whitespace, minimum 3 characters
+2. The content field is required and cannot be empty or just whitespace, minimum 5 characters
+3. Return a clear, field-specific error message when validation fails (e.g., "Title must be at least 3 characters")
+
+Also confirm and explicitly handle these HTTP status code cases across the Notes API:
+1. 201 when a note is successfully created
+2. 200 when a note is successfully fetched or updated
+3. 204 when a note is successfully deleted
+4. 400 when validation fails on create or update
+5. 404 when a requested note id does not exist
+
+Show me the exact validation logic added to the serializer, and confirm each status code is correctly returned by testing the relevant scenario.
+**Result:** Added input validation rules to `NoteSerializer` and added automated test suite covering all HTTP status codes:
+- Implemented `validate_title` and `validate_content` in `notes/serializers.py` to enforce non-empty/non-whitespace validation, minimum title length (3 characters), and minimum content length (5 characters) with clear field-specific error messages.
+- Configured `CharField` with `required=True` and `allow_blank=True` so custom validation methods format empty/whitespace field errors.
+- Created `NoteAPITests` in `notes/tests.py` covering status codes `201 CREATED`, `200 OK` (list/retrieve/update), `204 NO CONTENT` (delete), `400 BAD REQUEST` (validation errors), and `404 NOT FOUND` (non-existent IDs). All 10 tests passed cleanly (`OK`).
+**Correction (if any):** None
+
+
