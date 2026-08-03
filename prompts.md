@@ -95,5 +95,26 @@ Show me the exact validation logic added to the serializer, and confirm each sta
 - Achieved a 100% clean lint pass (`All checks passed!`).
 **Correction (if any):** None
 
+## [2026-08-01] - Pytest & Pytest-Django Test Suite Setup
+**Prompt:** Set up pytest and pytest-django for this Django REST Framework backend project. Then write unit tests for the Notes API covering the following cases:
+1. Successfully creating a note with valid data returns 201 and the note exists in the database
+2. Creating a note with an empty or whitespace title returns 400
+3. Creating a note with content shorter than 5 characters returns 400
+4. Fetching the list of notes returns 200 with the correct number of notes
+5. Fetching a single note by a valid id returns 200 with the correct data
+6. Fetching a note with a non-existent id returns 404
+7. Updating a note with valid data returns 200 and the change is saved
+8. Deleting a note returns 204 and the note no longer exists in the database
+
+Use Django's test database so these tests don't affect real data. Run the tests and confirm all pass. List every file created, and explain what fixtures or test setup you used.
+**Result:** Configured Pytest and pytest-django with comprehensive test coverage:
+- Installed `pytest` and `pytest-django`.
+- Created `backend/pytest.ini` configured with `DJANGO_SETTINGS_MODULE = config.settings`.
+- Created `backend/notes/conftest.py` defining Pytest fixtures: `api_client` (DRF APIClient instance), `test_user` (isolated Django test user), and `test_note` (test Note instance).
+- Created `backend/notes/test_notes_api.py` with 8 test cases covering all creation, validation, fetching list/single note, 404 handling, updating, and deleting operations using `@pytest.mark.django_db`.
+- Ran `pytest` resulting in 18/18 passing tests (100% pass).
+**Correction (if any):** None
+
+
 
 
