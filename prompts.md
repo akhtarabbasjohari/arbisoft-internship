@@ -115,6 +115,14 @@ Use Django's test database so these tests don't affect real data. Run the tests 
 - Ran `pytest` resulting in 18/18 passing tests (100% pass).
 **Correction (if any):** None
 
+## [2026-08-03] - Register Note Model in Django Admin Dashboard
+**Prompt:** In backend/notes/admin.py, register the Note model with Django's admin site so it appears in the Django admin dashboard. Customize the admin list view to display title, user, and created_at as columns instead of the default generic view. Do not touch any other files or unrelated changes.
+**Result:** Registered `Note` model in `backend/notes/admin.py` with custom `ModelAdmin`:
+- Decorated `NoteAdmin` with `@admin.register(Note)`.
+- Customized `list_display = ('title', 'user', 'created_at')` to render title, user, and creation timestamp columns in the Django admin dashboard.
+**Correction (if any):** None
+
+
 
 
 
