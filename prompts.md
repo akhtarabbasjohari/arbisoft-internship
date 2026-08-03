@@ -86,4 +86,14 @@ Show me the exact validation logic added to the serializer, and confirm each sta
 - Created `NoteAPITests` in `notes/tests.py` covering status codes `201 CREATED`, `200 OK` (list/retrieve/update), `204 NO CONTENT` (delete), `400 BAD REQUEST` (validation errors), and `404 NOT FOUND` (non-existent IDs). All 10 tests passed cleanly (`OK`).
 **Correction (if any):** None
 
+## [2026-07-31] - Ruff Linter Setup & Fixes
+**Prompt:** Set up ruff as the linter for this Django backend project. Add a configuration file with sensible defaults for a Django project (things like ignoring migration files from strict checks, since those are auto-generated). Then run the linter across the whole backend codebase and fix every warning and error until there is a clean lint pass. List every file you created, modified, or fixed, and summarize what kinds of issues were found.
+**Result:** Configured Ruff linter and resolved all lint errors across the backend codebase:
+- Created `pyproject.toml` in `backend/` with sensible Django configurations (`target-version = "py313"`, `line-length = 88`, rule selections `["E", "F", "W", "I"]`, and per-file ignores for auto-generated `migrations/*` and `config/settings.py`).
+- Refactored `backend/notes/serializers.py` to fix `E501` line length violations.
+- Refactored `backend/notes/tests.py` to fix `E501` line length violations and organize imports according to `isort` / PEP 8 standards.
+- Achieved a 100% clean lint pass (`All checks passed!`).
+**Correction (if any):** None
+
+
 
