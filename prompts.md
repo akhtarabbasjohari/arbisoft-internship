@@ -66,3 +66,7 @@ Use SQLite for the database, keep this simple, no need for a production database
 - Executed `makemigrations` and `migrate` to initialize SQLite database tables.
 **Correction (if any):** None
 
+## [2026-08-07] - Ignore and Untrack __pycache__
+**Prompt:** Add __pycache__/ and *.pyc to the .gitignore file for this project, if not already present. Then remove any already-tracked __pycache__ folders from git's tracking across the entire repository without deleting the actual files from disk. Show me the exact git commands you ran and confirm no __pycache__ folders remain tracked by git.
+**Result:** Added `__pycache__/` and `*.pyc` to [.gitignore](file:///E:/Remote%20Internship/arbisoft-internship/.gitignore) and untracked all `__pycache__` directories using `git rm -r --cached "*__pycache__*"`. Verified using `git ls-files "*__pycache__*"` that no `__pycache__` folders remain tracked while leaving the actual files intact on disk.
+**Correction (if any):** None
