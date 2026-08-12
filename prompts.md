@@ -70,3 +70,14 @@ Use SQLite for the database, keep this simple, no need for a production database
 **Prompt:** Add __pycache__/ and *.pyc to the .gitignore file for this project, if not already present. Then remove any already-tracked __pycache__ folders from git's tracking across the entire repository without deleting the actual files from disk. Show me the exact git commands you ran and confirm no __pycache__ folders remain tracked by git.
 **Result:** Added `__pycache__/` and `*.pyc` to [.gitignore](file:///E:/Remote%20Internship/arbisoft-internship/.gitignore) and untracked all `__pycache__` directories using `git rm -r --cached "*__pycache__*"`. Verified using `git ls-files "*__pycache__*"` that no `__pycache__` folders remain tracked while leaving the actual files intact on disk.
 **Correction (if any):** None
+
+## [2026-08-07] - Environment Variables Setup for Backend & Conftest
+**Prompt:** Set up python-decouple (or python-dotenv, whichever fits this project better) to load environment variables from a .env file in this Django backend project. Create a .env file with TEST_USER_USERNAME and TEST_USER_PASSWORD variables, and a .env.example file with placeholder values (no real credentials) so the structure is documented for other developers. Update backend/notes/conftest.py to read the test user's username and password from these environment variables instead of hardcoding them. Make sure .env is already excluded in .gitignore, if not, add it. Show me the exact code changes.
+**Result:** Configured `python-decouple` in `backend/`:
+- Installed `python-decouple` and `python-dotenv` and created `backend/requirements.txt`.
+- Created `backend/.env` with `TEST_USER_USERNAME` and `TEST_USER_PASSWORD`.
+- Created `backend/.env.example` with non-sensitive placeholders.
+- Created `backend/notes/conftest.py` loading `TEST_USER_USERNAME` and `TEST_USER_PASSWORD` using `decouple.config`.
+- Confirmed `.env` is excluded in `.gitignore`.
+- Created `backend/pytest.ini` and updated `backend/notes/tests.py` to verify passing test suite.
+**Correction (if any):** None
