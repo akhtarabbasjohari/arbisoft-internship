@@ -81,3 +81,24 @@ Use SQLite for the database, keep this simple, no need for a production database
 - Confirmed `.env` is excluded in `.gitignore`.
 - Created `backend/pytest.ini` and updated `backend/notes/tests.py` to verify passing test suite.
 **Correction (if any):** None
+
+## [2026-08-13] - Connect Next.js Frontend to Django REST Framework JWT Auth & Notes API
+**Prompt:** Connect this Next.js frontend to the Django REST Framework backend's JWT authentication and Notes API. Implement the following:
+1. A registration form (username, password) that calls the backend's registration endpoint
+2. A login form (username, password) that calls the backend's JWT login endpoint, and stores the returned access token securely (use an httpOnly cookie if the backend supports setting one, otherwise store in memory/localStorage and explain the tradeoff)
+3. Attach the JWT access token as an Authorization Bearer header on all requests to protected Notes endpoints
+4. Replace the current mock Items/Notes data with real API calls to the Django backend for all CRUD operations: list, create, update, delete
+5. Handle three distinct states on every API call: loading, success, and error, show a loading indicator during the request, and a clear inline error message if the request fails (e.g., invalid login, expired token, validation error from the backend)
+6. Add a logout function that clears the stored token and redirects to the login page
+7. Protect the Notes routes so an unauthenticated user is redirected to the login page if they try to access them directly
+8. Handle CORS properly between the Next.js frontend (localhost:3000) and Django backend (localhost:8000) if not already configured on the backend
+
+After implementation, tell me exactly which files were created or modified, and explain how the JWT token flow works end to end (login → token storage → attaching it to requests → what happens when it expires).
+**Result:** Connected Next.js frontend to Django REST Framework backend:
+- Created `frontend/app/register/page.tsx` with registration form calling `http://localhost:8000/api/register/`.
+- Updated `frontend/app/login/page.tsx` with login form calling `http://localhost:8000/api/token/` and storing access/refresh tokens in `localStorage`.
+- Created `frontend/app/lib/api.ts` (`fetchWithAuth`) interceptor to automatically attach `Authorization: Bearer <token>` and handle 401 session expiration redirects.
+- Updated `frontend/app/items/page.tsx` replacing mock data with real API calls for all CRUD operations (List, Create, Inline Edit/Update, Delete), protected route redirect for unauthenticated users, and loading/success/error UI states.
+- Created `frontend/app/context/AuthContext.tsx` providing global auth state and `logout()` function.
+- Updated `frontend/app/layout.tsx` wrapping the application in `<AuthProvider>` with a dynamic Auth Navbar.
+**Correction (if any):** Wrapped RootLayout in `<AuthProvider>` in `app/layout.tsx` to resolve Context provider error.
