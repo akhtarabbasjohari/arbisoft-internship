@@ -92,9 +92,15 @@ function LoginFormContent() {
         </div>
       )}
 
-      <form onSubmit={handleLogin} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <form
+        onSubmit={handleLogin}
+        style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+      >
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          <label htmlFor="login-username" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}>
+          <label
+            htmlFor="login-username"
+            style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}
+          >
             Username
           </label>
           <input
@@ -115,7 +121,10 @@ function LoginFormContent() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          <label htmlFor="login-password" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}>
+          <label
+            htmlFor="login-password"
+            style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}
+          >
             Password
           </label>
           <input
@@ -156,7 +165,10 @@ function LoginFormContent() {
 
       <p style={{ fontSize: "0.85rem", color: "#6b7280", marginTop: "20px", textAlign: "center" }}>
         Don't have an account yet?{" "}
-        <Link href="/register" style={{ color: "#2563eb", textDecoration: "none", fontWeight: 500 }}>
+        <Link
+          href="/register"
+          style={{ color: "#2563eb", textDecoration: "none", fontWeight: 500 }}
+        >
           Register here
         </Link>
       </p>

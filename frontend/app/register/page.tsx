@@ -86,10 +86,16 @@ export default function RegisterPage() {
         </div>
       )}
 
-      <form onSubmit={handleRegister} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <form
+        onSubmit={handleRegister}
+        style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+      >
         {/* Username Field */}
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          <label htmlFor="reg-username" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}>
+          <label
+            htmlFor="reg-username"
+            style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}
+          >
             Username *
           </label>
           <input
@@ -111,7 +117,10 @@ export default function RegisterPage() {
 
         {/* Email Field (Optional) */}
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          <label htmlFor="reg-email" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}>
+          <label
+            htmlFor="reg-email"
+            style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}
+          >
             Email Address <span style={{ color: "#9ca3af", fontWeight: 400 }}>(Optional)</span>
           </label>
           <input
@@ -132,7 +141,10 @@ export default function RegisterPage() {
 
         {/* Password Field */}
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          <label htmlFor="reg-password" style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}>
+          <label
+            htmlFor="reg-password"
+            style={{ fontSize: "0.85rem", fontWeight: 500, color: "#374151" }}
+          >
             Password * (min 6 characters)
           </label>
           <input
