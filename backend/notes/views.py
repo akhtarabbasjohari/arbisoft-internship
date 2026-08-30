@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Note
 from .serializers import NoteSerializer, UserRegistrationSerializer
+from .filters import NoteFilter
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -30,6 +31,9 @@ def register_user(request):
 def note_list_create(request):
     if request.method == 'GET':
         notes = Note.objects.all().order_by('-created_at')
+
+        filterQuery = NoteFilter(request.GET, queryset=notes)
+        notes = filterQuery.qs
         serializer = NoteSerializer(notes, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
